@@ -9,6 +9,7 @@
 #include "Math/UnrealMathUtility.h"
 #include "Components/InputComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "../kusaGameInstance.h"
 
 // Sets default values
 AWheelChar::AWheelChar()
@@ -45,6 +46,9 @@ void AWheelChar::BeginPlay()
 void AWheelChar::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	UkusaGameInstance* gameInst = Cast<UkusaGameInstance>(GetGameInstance());
+	gameInst->playerPos = RootComponent->GetComponentLocation().X;
 
 	if (F_timer  >= 60) {
 		wheel->AddAngularImpulse(FVector(0, 100 * DeltaTime, 0), NAME_None, true);
