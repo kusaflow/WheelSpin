@@ -22,14 +22,25 @@ public:
 
 	int xpos = -500000;
 
-	bool start = true;
+	bool start = true, init_block = true;
 
 
 	UPROPERTY(EditDefaultsOnly, category = "kusa_Meshes")
 	TSubclassOf<class AActor> sharp_cube;
 
 	UPROPERTY(EditDefaultsOnly, category = "kusa_Meshes")
-		TSubclassOf<class AActor> smooth_cube;
+	TSubclassOf<class AActor> smooth_cube;
+
+	//power Ups ===================================================================>
+	UPROPERTY(EditDefaultsOnly, category = "PowerUps")
+	TSubclassOf<class AActor> PU_slowDown;
+
+	UPROPERTY(EditDefaultsOnly, category = "PowerUps")
+		TSubclassOf<class AActor> PU_speedUp;
+
+	UPROPERTY(EditDefaultsOnly, category = "PowerUps")
+		TSubclassOf<class AActor> PU_JumpUp;
+
 
 protected:
 	// Called when the game starts or when spawned
