@@ -97,16 +97,25 @@ void ALevelMngr::CreateLevelBlock() {
 	int y_sz = 10;
 
 	int wToSelect = 4;
-	wToSelect = (int)FMath::FRandRange(1, 5);
+	wToSelect = (int)FMath::FRandRange(1, 7);
 
 	if (start)
-		wToSelect = 1;
+		wToSelect = 10;
 
 
-	//powerUps 
+	//powerUps ==============================================================================
+	//jump UP----------------------------
+	if (PU_JumpUp) {
+		AActor* bl = world->SpawnActor<AActor>(PU_JumpUp,
+			FVector(xpos + FMath::FRandRange(20, 180), FMath::FRandRange(-880, 880), 0),
+			FRotator(0), spawnPara);
+		bl->SetActorScale3D(FVector(1, 1, 1.05f));
+		blocks.Push(bl);
+	}
+
 	if ((int)(FMath::FRandRange(0,100))%10 == 0) {
 	//if (true){
-		int pIdx = (int)FMath::FRandRange(1, 4);
+		int pIdx = (int)FMath::FRandRange(1, 3);
 		//pIdx = 3;
 
 		//=====================slow Down
@@ -125,31 +134,16 @@ void ALevelMngr::CreateLevelBlock() {
 			bl->SetActorScale3D(FVector(1, 1, 5));
 			blocks.Push(bl);
 		}
-		//jump UP----------------------------
-		else if (pIdx == 3 && PU_JumpUp) {
-			AActor* bl = world->SpawnActor<AActor>(PU_JumpUp,
-				FVector(xpos + FMath::FRandRange(20, 180), FMath::FRandRange(-880, 880), 0),
-				FRotator(0), spawnPara);
-			bl->SetActorScale3D(FVector(1, 1, 1.05f));
-			blocks.Push(bl);
-		}
+
+
+
+		
 	}
 
 
 
-	if (wToSelect == 1) {
-		next_Milestone += 1000;
-		for (int i = 0; i < 5; i++) {
-			if (sharp_cube) {
-				AActor* floor = world->SpawnActor<AActor>(sharp_cube, FVector(xpos + 100, 0, 0), FRotator(0), spawnPara);
-				floor->SetActorScale3D(FVector(1, y_sz, 1));
-				blocks.Push(floor);
-			}
-			xpos += 200;
-		}
-	}
 	///--------------------------------very short bridge
-	else if (wToSelect == 2) {
+	 if (wToSelect == 1) {
 		next_Milestone += 1000;
 		for (int i = 0; i < 5; i++) {
 			if (sharp_cube) {
@@ -175,7 +169,7 @@ void ALevelMngr::CreateLevelBlock() {
 		}
 	}
 	///-------------------------------- short bridge
-	else if (wToSelect == 3) {
+	else if (wToSelect == 2) {
 		next_Milestone += 1000;
 		for (int i = 0; i < 5; i++) {
 			if (sharp_cube) {
@@ -201,7 +195,7 @@ void ALevelMngr::CreateLevelBlock() {
 		}
 	}
 	///--------------------------------bridge
-	else if (wToSelect == 4) {
+	else if (wToSelect == 3) {
 		next_Milestone += 1000;
 		for (int i = 0; i < 5; i++) {
 			if (smooth_cube) {
@@ -223,7 +217,15 @@ void ALevelMngr::CreateLevelBlock() {
 
 	//normal
 	else {
-
+		 next_Milestone += 1000;
+		 for (int i = 0; i < 5; i++) {
+			 if (sharp_cube) {
+				 AActor* floor = world->SpawnActor<AActor>(sharp_cube, FVector(xpos + 100, 0, 0), FRotator(0), spawnPara);
+				 floor->SetActorScale3D(FVector(1, y_sz, 1));
+				 blocks.Push(floor);
+			 }
+			 xpos += 200;
+		 }
 	}
 
 
