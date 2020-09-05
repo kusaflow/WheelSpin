@@ -17,5 +17,12 @@ class WHEELSPIN_API UkusaGameInstance : public UGameInstance
 public:
 	float playerPos = 0;
 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "kusaVar")
+	float BrakeTimer = 0;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "kusaVar")
+	float SpeedTimer = 0;
+
+
 };

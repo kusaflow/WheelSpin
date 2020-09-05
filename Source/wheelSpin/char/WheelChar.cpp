@@ -39,6 +39,9 @@ AWheelChar::AWheelChar()
 void AWheelChar::BeginPlay()
 {
 	Super::BeginPlay();
+	UkusaGameInstance* gameInst = Cast<UkusaGameInstance>(GetGameInstance());
+	gameInst->BrakeTimer = 0;
+	gameInst->SpeedTimer = 0;
 	
 }
 
@@ -57,6 +60,15 @@ void AWheelChar::Tick(float DeltaTime)
 	}
 	else {
 		F_timer += DeltaTime * 120;
+	}
+
+
+	if (gameInst->BrakeTimer <= 500) {
+		gameInst->BrakeTimer += 100 * DeltaTime;
+	}
+
+	if (gameInst->SpeedTimer <= 500) {
+		gameInst->SpeedTimer += 100 * DeltaTime;
 	}
 
 
