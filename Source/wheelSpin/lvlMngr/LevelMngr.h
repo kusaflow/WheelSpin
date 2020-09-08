@@ -22,7 +22,8 @@ public:
 
 	int xpos = -500000;
 
-	bool start = true, init_block = true;
+	bool start = true, init_block = true, hasNext = false;
+
 
 
 	UPROPERTY(EditDefaultsOnly, category = "kusa_Meshes")
@@ -30,6 +31,19 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, category = "kusa_Meshes")
 	TSubclassOf<class AActor> smooth_cube;
+
+	UPROPERTY(EditDefaultsOnly, category = "kusa_Meshes")
+	TSubclassOf<class AActor> Base_Track;
+
+	UPROPERTY(EditDefaultsOnly, category = "kusa_Meshes")
+	TSubclassOf<class AActor> Base_hole1;
+
+	UPROPERTY(EditDefaultsOnly, category = "kusa_Meshes")
+	TSubclassOf<class AActor> Base_hole2;
+
+
+
+
 
 	//power Ups ===================================================================>
 	UPROPERTY(EditDefaultsOnly, category = "PowerUps")

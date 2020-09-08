@@ -96,8 +96,12 @@ void ALevelMngr::CreateLevelBlock() {
 
 	int y_sz = 10;
 
-	int wToSelect = 4;
-	wToSelect = (int)FMath::FRandRange(1, 7);
+	int wToSelect = 10;
+
+	if (!hasNext)
+		wToSelect = (int)FMath::FRandRange(1, 4);
+
+	hasNext = false;
 
 	if (start)
 		wToSelect = 10;
@@ -141,91 +145,39 @@ void ALevelMngr::CreateLevelBlock() {
 	}
 
 
-
-	///--------------------------------very short bridge
+	///--------------------------------hole1
 	 if (wToSelect == 1) {
-		next_Milestone += 1000;
-		for (int i = 0; i < 5; i++) {
-			if (sharp_cube) {
-				if (i == 2) {
-					AActor* b1 = world->SpawnActor<AActor>(smooth_cube, FVector(xpos + 100, -800, 0), FRotator(0), spawnPara);
-					b1 ->SetActorScale3D(FVector(1, 2, 1));
-					AActor* b2 = world->SpawnActor<AActor>(smooth_cube, FVector(xpos + 100, 0, 0), FRotator(0), spawnPara);
-					b2->SetActorScale3D(FVector(1, 2, 1));
-					AActor* b3 = world->SpawnActor<AActor>(smooth_cube, FVector(xpos + 100, 800, 0), FRotator(0), spawnPara);
-					b3->SetActorScale3D(FVector(1, 2, 1));
 
-					blocks.Push(b1); 
-					blocks.Push(b2);
-					blocks.Push(b3);
-				}
-				else {
-					AActor* floor = world->SpawnActor<AActor>(smooth_cube, FVector(xpos + 100, 0, 0), FRotator(0), spawnPara);
-					floor->SetActorScale3D(FVector(1, y_sz, 1));
-					blocks.Push(floor);
-				}
-			}
-			xpos += 200;
-		}
+		 next_Milestone += 1000;
+		 if (Base_hole1) {
+			 AActor* floor = world->SpawnActor<AActor>(Base_hole1, FVector(xpos + 500, 0, 0), FRotator(0), spawnPara);
+			 blocks.Push(floor);
+		 }
+		 xpos += 1000;
+		 hasNext = true;
+		 wToSelect = 1000;
 	}
-	///-------------------------------- short bridge
+	///-------------------------------- hole2
 	else if (wToSelect == 2) {
-		next_Milestone += 1000;
-		for (int i = 0; i < 5; i++) {
-			if (sharp_cube) {
-				if (i % 2 == 0) {
-					AActor* b1 = world->SpawnActor<AActor>(smooth_cube, FVector(xpos + 100, -800, 0), FRotator(0), spawnPara);
-					b1->SetActorScale3D(FVector(1, 2, 1));
-					AActor* b2 = world->SpawnActor<AActor>(smooth_cube, FVector(xpos + 100, 0, 0), FRotator(0), spawnPara);
-					b2->SetActorScale3D(FVector(1, 2, 1));
-					AActor* b3 = world->SpawnActor<AActor>(smooth_cube, FVector(xpos + 100, 800, 0), FRotator(0), spawnPara);
-					b3->SetActorScale3D(FVector(1, 2, 1));
 
-					blocks.Push(b1);
-					blocks.Push(b2);
-					blocks.Push(b3);
-				}
-				else {
-					AActor* floor = world->SpawnActor<AActor>(smooth_cube, FVector(xpos + 100, 0, 0), FRotator(0), spawnPara);
-					floor->SetActorScale3D(FVector(1, y_sz, 1));
-					blocks.Push(floor);
-				}
-			}
-			xpos += 200;
-		}
-	}
-	///--------------------------------bridge
-	else if (wToSelect == 3) {
-		next_Milestone += 1000;
-		for (int i = 0; i < 5; i++) {
-			if (smooth_cube) {
-				AActor* b1 = world->SpawnActor<AActor>(smooth_cube, FVector(xpos + 100, -800, 0), FRotator(0), spawnPara);
-				b1->SetActorScale3D(FVector(1, 2, 1));
-				AActor* b2 = world->SpawnActor<AActor>(smooth_cube, FVector(xpos + 100, 0, 0), FRotator(0), spawnPara);
-				b2->SetActorScale3D(FVector(1, 2, 1));
-				AActor* b3 = world->SpawnActor<AActor>(smooth_cube, FVector(xpos + 100, 800, 0), FRotator(0), spawnPara);
-				b3->SetActorScale3D(FVector(1, 2, 1));
-
-				blocks.Push(b1);
-				blocks.Push(b2);
-				blocks.Push(b3);
-				
-			}
-			xpos += 200;
-		}
+		 next_Milestone += 1000;
+		 if (Base_hole2) {
+			 AActor* floor = world->SpawnActor<AActor>(Base_hole2, FVector(xpos + 500, 0, 0), FRotator(0), spawnPara);
+			 blocks.Push(floor);
+		 }
+		 xpos += 1000;
+		 hasNext = true;
+		 wToSelect = 1000;
 	}
 
 	//normal
 	else {
 		 next_Milestone += 1000;
-		 for (int i = 0; i < 5; i++) {
-			 if (sharp_cube) {
-				 AActor* floor = world->SpawnActor<AActor>(sharp_cube, FVector(xpos + 100, 0, 0), FRotator(0), spawnPara);
-				 floor->SetActorScale3D(FVector(1, y_sz, 1));
-				 blocks.Push(floor);
-			 }
-			 xpos += 200;
-		 }
+		if (Base_Track) {
+			AActor* floor = world->SpawnActor<AActor>(Base_Track, FVector(xpos + 500, 0, 0), FRotator(0), spawnPara);
+			blocks.Push(floor);
+		}
+		xpos += 1000;
 	}
 
 
