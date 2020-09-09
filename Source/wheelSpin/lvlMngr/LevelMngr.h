@@ -24,8 +24,8 @@ public:
 
 	bool start = true, init_block = true, hasNext = false;
 
-
-
+	
+	//kusa meshes===========================================================================/
 	UPROPERTY(EditDefaultsOnly, category = "kusa_Meshes")
 	TSubclassOf<class AActor> sharp_cube;
 

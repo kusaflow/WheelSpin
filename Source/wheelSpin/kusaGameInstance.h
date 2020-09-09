@@ -24,5 +24,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "kusaVar")
 	float SpeedTimer = 0;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "kusaVar")
+	int WheelIdx = 0;
 
 };
